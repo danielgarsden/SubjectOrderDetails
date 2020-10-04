@@ -17,7 +17,7 @@ namespace SubjectOrderDetails.Entities
         public string firstName { get; set; }
 
         [MaxLength(100)]
-        public string lastnameName { get; set; }
+        public string lastName { get; set; }
 
         public DateTimeOffset dateofBirth { get; set; }
 
