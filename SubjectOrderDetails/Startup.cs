@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SubjectOrderDetails.Services;
+using SubjectOrderDetails.DbContexts;
 
 namespace SubjectOrderDetails
 {
@@ -25,6 +27,14 @@ namespace SubjectOrderDetails
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddScoped<ISubjectOrderRepository, SubjectOrderRepository>();
+
+            services.AddDbContext<SubjectOrderRepository>(options =>
+            {
+                options.UseSqlServer(
+                    @"Server=(localdb)\mssqllocaldb;Database=CustomerDetailsDB;Trusted_Connection=True;");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
