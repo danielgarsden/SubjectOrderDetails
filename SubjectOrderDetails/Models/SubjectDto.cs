@@ -13,6 +13,6 @@ namespace SubjectOrderDetails.Models
 
         public string lastName { get; set; }
 
-        public DateTimeOffset dateofBirth { get; set; }
+        public DateTimeOffset dateOfBirth { get; set; }
     }
 }

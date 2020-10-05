@@ -34,7 +34,7 @@ namespace SubjectOrderDetails
             services.AddDbContext<SubjectOrderContext>(options =>
             {
                 options.UseSqlServer(
-                    @"Server=(localdb)\mssqllocaldb;Database=CustomerDetailsDB;Trusted_Connection=True;");
+                    @"Server=(localdb)\mssqllocaldb;Database=SubjectOrderDetailsDB;Trusted_Connection=True;");
             });
         }
 

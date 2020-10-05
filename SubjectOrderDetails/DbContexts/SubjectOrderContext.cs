@@ -15,5 +15,21 @@ namespace SubjectOrderDetails.DbContexts
         }
 
         public DbSet<Subject> Subjects { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // seed the database with dummy data
+            modelBuilder.Entity<Subject>().HasData(
+                new Subject()
+                {
+                    subjectId = 1,
+                    firstName = "Daniel",
+                    lastName = "Garsden",
+                    dateOfBirth = new DateTime(1976, 8, 19)
+                }
+                );
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

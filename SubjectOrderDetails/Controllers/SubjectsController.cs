@@ -34,7 +34,7 @@ namespace SubjectOrderDetails.Controllers
                     subjectId = subject.subjectId,
                     firstName = subject.firstName,
                     lastName = subject.lastName,
-                    dateofBirth = subject.dateofBirth
+                    dateOfBirth = subject.dateOfBirth
                 });
             }
 
