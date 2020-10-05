@@ -67,6 +67,11 @@ namespace SubjectOrderDetails.Services
             // no code implementation here
         }
 
+        public IEnumerable<Title> GetTitles()
+        {
+            return _context.Titles.ToList<Title>();
+        }
+
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)

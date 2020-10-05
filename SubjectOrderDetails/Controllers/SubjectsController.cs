@@ -40,5 +40,26 @@ namespace SubjectOrderDetails.Controllers
 
             return Ok(subjectsToReturn);
         }
+
+        [HttpGet("{subjectId}")]
+        public ActionResult<SubjectDto> GetSubject(int subjectId)
+        {
+            var subjectfromRepo = _subjectOrderRepository.GetSubject(subjectId);
+
+            if (subjectfromRepo == null)
+            {
+                return NotFound();
+            }
+
+            SubjectDto subjectToReturn = new SubjectDto
+            {
+                subjectId = subjectfromRepo.subjectId,
+                firstName = subjectfromRepo.firstName,
+                lastName = subjectfromRepo.lastName,
+                dateOfBirth = subjectfromRepo.dateOfBirth
+            };
+
+            return Ok(subjectToReturn);
+        }
     }
 }

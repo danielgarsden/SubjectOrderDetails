@@ -16,6 +16,9 @@ namespace SubjectOrderDetails.Services
         void DeleteSubject(Subject subject);
         void UpdateSubject(Subject subject);
         bool SubjectExists(int subjectId);
+
+        IEnumerable<Title> GetTitles();
+
         bool Save();
     }
 }

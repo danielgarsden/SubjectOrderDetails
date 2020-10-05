@@ -16,6 +16,8 @@ namespace SubjectOrderDetails.DbContexts
 
         public DbSet<Subject> Subjects { get; set; }
 
+        public DbSet<Title> Titles { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // seed the database with dummy data
@@ -26,6 +28,43 @@ namespace SubjectOrderDetails.DbContexts
                     firstName = "Daniel",
                     lastName = "Garsden",
                     dateOfBirth = new DateTime(1976, 8, 19)
+                },
+                new Subject()
+                {
+                    subjectId = 2,
+                    firstName = "Tamas",
+                    lastName = "Garsden",
+                    dateOfBirth = new DateTime(2015, 11, 29)
+                },
+                new Subject()
+                {
+                    subjectId = 3,
+                    firstName = "Alma",
+                    lastName = "Garsden",
+                    dateOfBirth = new DateTime(2017, 11, 16)
+                }
+                );
+
+            modelBuilder.Entity<Title>().HasData(
+                new Title()
+                {
+                    titleId = 1,
+                    titleName = "Mr"
+                },
+                new Title()
+                {
+                    titleId = 2,
+                    titleName = "Mrs"
+                },
+                new Title()
+                {
+                    titleId = 3,
+                    titleName = "Master"
+                },
+                new Title()
+                {
+                    titleId = 4,
+                    titleName = "Miss"
                 }
                 );
 

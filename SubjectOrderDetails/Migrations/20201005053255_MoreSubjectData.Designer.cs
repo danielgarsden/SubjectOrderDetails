@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SubjectOrderDetails.DbContexts;
 
 namespace SubjectOrderDetails.Migrations
 {
     [DbContext(typeof(SubjectOrderContext))]
-    partial class SubjectOrderContextModelSnapshot : ModelSnapshot
+    [Migration("20201005053255_MoreSubjectData")]
+    partial class MoreSubjectData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,45 +65,6 @@ namespace SubjectOrderDetails.Migrations
                             dateOfBirth = new DateTimeOffset(new DateTime(2017, 11, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             firstName = "Alma",
                             lastName = "Garsden"
-                        });
-                });
-
-            modelBuilder.Entity("SubjectOrderDetails.Entities.Title", b =>
-                {
-                    b.Property<int>("titleId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("titleName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
-
-                    b.HasKey("titleId");
-
-                    b.ToTable("Titles");
-
-                    b.HasData(
-                        new
-                        {
-                            titleId = 1,
-                            titleName = "Mr"
-                        },
-                        new
-                        {
-                            titleId = 2,
-                            titleName = "Mrs"
-                        },
-                        new
-                        {
-                            titleId = 3,
-                            titleName = "Master"
-                        },
-                        new
-                        {
-                            titleId = 4,
-                            titleName = "Miss"
                         });
                 });
 #pragma warning restore 612, 618
