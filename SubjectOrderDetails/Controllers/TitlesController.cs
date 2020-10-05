@@ -37,8 +37,6 @@ namespace SubjectOrderDetails.Controllers
             }
 
             return Ok(titlesToReturn);
-
-            return Ok();
         }
     }
 }

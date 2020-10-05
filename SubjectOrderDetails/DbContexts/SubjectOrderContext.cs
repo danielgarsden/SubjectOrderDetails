@@ -27,21 +27,24 @@ namespace SubjectOrderDetails.DbContexts
                     subjectId = 1,
                     firstName = "Daniel",
                     lastName = "Garsden",
-                    dateOfBirth = new DateTime(1976, 8, 19)
+                    dateOfBirth = new DateTime(1976, 8, 19),
+                    titleId = 1
                 },
                 new Subject()
                 {
                     subjectId = 2,
                     firstName = "Tamas",
                     lastName = "Garsden",
-                    dateOfBirth = new DateTime(2015, 11, 29)
+                    dateOfBirth = new DateTime(2015, 11, 29),
+                    titleId = 3
                 },
                 new Subject()
                 {
                     subjectId = 3,
                     firstName = "Alma",
                     lastName = "Garsden",
-                    dateOfBirth = new DateTime(2017, 11, 16)
+                    dateOfBirth = new DateTime(2017, 11, 16),
+                    titleId = 4
                 }
                 );
 

@@ -22,5 +22,10 @@ namespace SubjectOrderDetails.Entities
 
         public DateTimeOffset dateOfBirth { get; set; }
 
+        [ForeignKey("titleId")]
+        public Title Title { get; set; }
+
+        public int titleId { get; set; }
+
     }
 }

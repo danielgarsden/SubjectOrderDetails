@@ -34,7 +34,8 @@ namespace SubjectOrderDetails.Controllers
                     subjectId = subject.subjectId,
                     firstName = subject.firstName,
                     lastName = subject.lastName,
-                    dateOfBirth = subject.dateOfBirth
+                    dateOfBirth = subject.dateOfBirth,
+                    titleId = subject.titleId
                 });
             }
 
@@ -56,7 +57,8 @@ namespace SubjectOrderDetails.Controllers
                 subjectId = subjectfromRepo.subjectId,
                 firstName = subjectfromRepo.firstName,
                 lastName = subjectfromRepo.lastName,
-                dateOfBirth = subjectfromRepo.dateOfBirth
+                dateOfBirth = subjectfromRepo.dateOfBirth,
+                titleId = subjectfromRepo.titleId
             };
 
             return Ok(subjectToReturn);
