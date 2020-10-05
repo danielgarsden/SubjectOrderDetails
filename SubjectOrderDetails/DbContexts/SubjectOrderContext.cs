@@ -9,6 +9,11 @@ namespace SubjectOrderDetails.DbContexts
 {
     public class SubjectOrderContext : DbContext
     {
+        public SubjectOrderContext(DbContextOptions<SubjectOrderContext> options) : base(options)
+        {
+
+        }
+
         public DbSet<Subject> Subjects { get; set; }
     }
 }

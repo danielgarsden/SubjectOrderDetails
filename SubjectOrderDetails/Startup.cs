@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using SubjectOrderDetails.Services;
+using Microsoft.EntityFrameworkCore;
 using SubjectOrderDetails.DbContexts;
 
 namespace SubjectOrderDetails
@@ -30,7 +31,7 @@ namespace SubjectOrderDetails
 
             services.AddScoped<ISubjectOrderRepository, SubjectOrderRepository>();
 
-            services.AddDbContext<SubjectOrderRepository>(options =>
+            services.AddDbContext<SubjectOrderContext>(options =>
             {
                 options.UseSqlServer(
                     @"Server=(localdb)\mssqllocaldb;Database=CustomerDetailsDB;Trusted_Connection=True;");
