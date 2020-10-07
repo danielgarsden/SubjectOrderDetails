@@ -42,7 +42,7 @@ namespace SubjectOrderDetails.Controllers
             return Ok(subjectsToReturn);
         }
 
-        [HttpGet("{subjectId}")]
+        [HttpGet("{subjectId}", Name ="GetSubject")]
         public ActionResult<SubjectDto> GetSubject(int subjectId)
         {
             var subjectfromRepo = _subjectOrderRepository.GetSubject(subjectId);
@@ -62,6 +62,34 @@ namespace SubjectOrderDetails.Controllers
             };
 
             return Ok(subjectToReturn);
+        }
+
+        [HttpPost]
+        public ActionResult CreateSubject(SubjectForCreationDto subject)
+        {
+            Subject subjectEntity = new Subject
+            {
+                firstName = subject.firstName,
+                lastName = subject.lastName,
+                dateOfBirth = subject.dateOfBirth,
+                titleId = subject.titleId
+            };
+
+            _subjectOrderRepository.AddSubject(subjectEntity);
+            _subjectOrderRepository.Save();
+
+            var subjectToReturn = new SubjectDto
+            {
+                subjectId = subjectEntity.subjectId,
+                firstName = subjectEntity.firstName,
+                lastName = subjectEntity.lastName,
+                dateOfBirth = subjectEntity.dateOfBirth,
+                titleId = subjectEntity.titleId
+            };
+
+            return CreatedAtRoute("GetSubject",
+                    new { subjectId = subjectToReturn.subjectId },
+                    subjectToReturn); ;
         }
     }
 }

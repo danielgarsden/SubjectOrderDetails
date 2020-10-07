@@ -85,5 +85,23 @@ namespace SubjectOrderDetailsTests
             Assert.IsInstanceOf<NotFoundResult>(result.Result);
         }
 
+        [Test]
+        public void GetSubject_ReturnsCorrectSubject()
+        {
+            // arrange
+            FakeSubjectOrderRepository fake = new FakeSubjectOrderRepository();
+            SubjectsController sc = new SubjectsController(fake);
+
+            // act
+            var result = sc.GetSubject(1).Result as OkObjectResult;
+            SubjectDto subject = result.Value as SubjectDto;
+
+            // assert
+            Assert.AreEqual(1, subject.subjectId);
+            Assert.AreEqual("Daniel", subject.firstName);
+            Assert.AreEqual("Garsden", subject.lastName);
+            Assert.AreEqual("19/08/1976", subject.dateOfBirth.ToString("d"));
+        }
+
     }
 }
