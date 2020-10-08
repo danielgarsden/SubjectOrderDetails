@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
 using SubjectOrderDetails.Controllers;
 using SubjectOrderDetails.Models;
+using System;
 using System.Collections.Generic;
 
 namespace SubjectOrderDetailsTests
@@ -103,5 +104,112 @@ namespace SubjectOrderDetailsTests
             Assert.AreEqual("19/08/1976", subject.dateOfBirth.ToString("d"));
         }
 
+        [Test]
+        public void AddSubject_ValidObject_ReturnsCreateAtRouteResult()
+        {
+            // arrange
+            FakeSubjectOrderRepository fake = new FakeSubjectOrderRepository();
+            SubjectsController sc = new SubjectsController(fake);
+
+            SubjectForCreationDto subject = new SubjectForCreationDto
+            {
+                firstName = "Zita",
+                lastName = "Garsden Kabok",
+                dateOfBirth = new DateTime(1980, 05, 03),
+                titleId = 2
+            };
+
+            // act
+            var result = sc.CreateSubject(subject);
+
+            // assert
+            Assert.IsInstanceOf<CreatedAtRouteResult>(result);
+        }
+
+        [Test]
+        public void AddSubject_ValidObject_ReturnsCreatedSubject()
+        {
+            // arrange
+            FakeSubjectOrderRepository fake = new FakeSubjectOrderRepository();
+            SubjectsController sc = new SubjectsController(fake);
+
+            SubjectForCreationDto subject = new SubjectForCreationDto
+            {
+                firstName = "Zita",
+                lastName = "Garsden Kabok",
+                dateOfBirth = new DateTime(1980, 05, 03),
+                titleId = 2
+            };
+
+            // act
+            CreatedAtRouteResult result = sc.CreateSubject(subject) as CreatedAtRouteResult;
+
+            // assert
+            Assert.IsInstanceOf<SubjectDto>(result.Value);
+            Assert.AreEqual("GetSubject", result.RouteName);
+
+            SubjectDto subjectReturned = result.Value as SubjectDto;
+
+            Assert.AreEqual(4, subjectReturned.subjectId);
+            Assert.AreEqual("Zita", subjectReturned.firstName);
+            Assert.AreEqual("Garsden Kabok", subjectReturned.lastName);
+            Assert.AreEqual("03/05/1980", subject.dateOfBirth.ToString("d"));
+            Assert.AreEqual(2, subjectReturned.titleId);
+
+        }
+
+        [Test]
+        public void AddSubject_InValidObject_ReturnsBadRequestResult()
+        {
+            // arrange
+            FakeSubjectOrderRepository fake = new FakeSubjectOrderRepository();
+            SubjectsController sc = new SubjectsController(fake);
+
+            SubjectForCreationDto subject = new SubjectForCreationDto
+            {
+                lastName = "Garsden Kabok",
+                dateOfBirth = new DateTime(1980, 05, 03),
+                titleId = 2
+            };
+            sc.ModelState.AddModelError("firstName", "Required");
+
+            // act
+            var result = sc.CreateSubject(subject);
+
+            // assert
+            Assert.IsInstanceOf<BadRequestObjectResult>(result);
+        }
+
+        [Test]
+        public void DeleteSubject_ValidSubject_ReturnsNoContext()
+        {
+            // arrange
+            FakeSubjectOrderRepository fake = new FakeSubjectOrderRepository();
+            SubjectsController sc = new SubjectsController(fake);
+
+            // act
+            var deleteResult = sc.DeleteSubject(1);
+            var getresult = sc.GetSubjects().Result as OkObjectResult;
+            List<SubjectDto> subjects = getresult.Value as List<SubjectDto>;
+
+            // assert
+            Assert.IsInstanceOf<NoContentResult>(deleteResult);
+            Assert.AreEqual(2, subjects.Count);
+        }
+
+        [Test]
+        public void DeleteSubject_ValidSubject_ReturnsNotFound()
+        {
+            // arrange
+            FakeSubjectOrderRepository fake = new FakeSubjectOrderRepository();
+            SubjectsController sc = new SubjectsController(fake);
+
+            // act
+            var deleteResult = sc.DeleteSubject(4);
+
+            // assert
+            Assert.IsInstanceOf<NotFoundResult>(deleteResult);
+            
+        }
     }
 }

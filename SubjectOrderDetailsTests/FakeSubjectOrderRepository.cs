@@ -70,7 +70,8 @@ namespace SubjectOrderDetailsTests
 
         public bool Save()
         {
-            throw new NotImplementedException();
+            // No implementation
+            return true;
         }
 
         public bool SubjectExists(int subjectId)

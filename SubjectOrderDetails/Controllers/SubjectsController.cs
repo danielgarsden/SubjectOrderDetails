@@ -65,8 +65,13 @@ namespace SubjectOrderDetails.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateSubject(SubjectForCreationDto subject)
+        public ActionResult CreateSubject([FromBody] SubjectForCreationDto subject)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             Subject subjectEntity = new Subject
             {
                 firstName = subject.firstName,
@@ -90,6 +95,23 @@ namespace SubjectOrderDetails.Controllers
             return CreatedAtRoute("GetSubject",
                     new { subjectId = subjectToReturn.subjectId },
                     subjectToReturn); ;
+        }
+
+        [HttpDelete("{subjectId}")]
+        public ActionResult DeleteSubject(int subjectId)
+        {
+            var subjectfromRepo = _subjectOrderRepository.GetSubject(subjectId);
+
+            if (subjectfromRepo == null)
+            {
+                return NotFound();
+            }
+
+            _subjectOrderRepository.DeleteSubject(subjectfromRepo);
+            _subjectOrderRepository.Save();
+
+            return NoContent();
+
         }
     }
 }
