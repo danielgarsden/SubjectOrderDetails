@@ -81,7 +81,7 @@ namespace SubjectOrderDetailsTests
 
         public void UpdateSubject(Subject subject)
         {
-            throw new NotImplementedException();
+            // no code implentation here
         }
     }
 }

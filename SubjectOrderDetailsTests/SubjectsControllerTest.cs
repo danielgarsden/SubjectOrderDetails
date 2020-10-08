@@ -198,7 +198,7 @@ namespace SubjectOrderDetailsTests
         }
 
         [Test]
-        public void DeleteSubject_ValidSubject_ReturnsNotFound()
+        public void DeleteSubject_InValidSubject_ReturnsNotFound()
         {
             // arrange
             FakeSubjectOrderRepository fake = new FakeSubjectOrderRepository();
@@ -210,6 +210,76 @@ namespace SubjectOrderDetailsTests
             // assert
             Assert.IsInstanceOf<NotFoundResult>(deleteResult);
             
+        }
+
+        [Test]
+        public void UpdateSubject_ValidSubject_ReturnsNoContent()
+        {
+            // arrange
+            FakeSubjectOrderRepository fake = new FakeSubjectOrderRepository();
+            SubjectsController sc = new SubjectsController(fake);
+
+            SubjectDto subject = new SubjectDto
+            {
+                firstName = "Mark",
+                lastName = "Garsden",
+                dateOfBirth = new DateTime(1980, 2, 11),
+                titleId = 1
+            };
+
+            // act
+            var result = sc.UpdateSubject(1, subject);
+
+            // assert
+            Assert.IsInstanceOf<NoContentResult>(result);
+
+        }
+
+        [Test]
+        public void UpdateSubject_InValidSubject_ReturnsNotFound()
+        {
+            // arrange
+            FakeSubjectOrderRepository fake = new FakeSubjectOrderRepository();
+            SubjectsController sc = new SubjectsController(fake);
+
+            SubjectDto subject = new SubjectDto
+            {
+                firstName = "Mark",
+                lastName = "Garsden",
+                dateOfBirth = new DateTime(1980, 2, 11),
+                titleId = 1
+            };
+
+            // act
+            var result = sc.UpdateSubject(4, subject);
+
+            // assert
+            Assert.IsInstanceOf<NotFoundResult>(result);
+
+        }
+
+        [Test]
+        public void UpdateSubject_InValidSubjectData_ReturnsBadRequest()
+        {
+            // arrange
+            FakeSubjectOrderRepository fake = new FakeSubjectOrderRepository();
+            SubjectsController sc = new SubjectsController(fake);
+
+            SubjectDto subject = new SubjectDto
+            {
+                firstName = "",
+                lastName = "Garsden",
+                dateOfBirth = new DateTime(1980, 2, 11),
+                titleId = 1
+            };
+            sc.ModelState.AddModelError("firstName", "Required");
+
+            // act
+            var result = sc.UpdateSubject(1, subject);
+
+            // assert
+            Assert.IsInstanceOf<BadRequestObjectResult>(result);
+
         }
     }
 }

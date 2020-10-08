@@ -113,5 +113,31 @@ namespace SubjectOrderDetails.Controllers
             return NoContent();
 
         }
+
+        [HttpPut("{subjectId}")]
+        public ActionResult UpdateSubject(int subjectId, SubjectDto subject)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var subjectfromRepo = _subjectOrderRepository.GetSubject(subjectId);
+
+            if (subjectfromRepo == null)
+            {
+                return NotFound();
+            }
+
+            subjectfromRepo.firstName = subject.firstName;
+            subjectfromRepo.lastName = subject.lastName;
+            subjectfromRepo.dateOfBirth = subject.dateOfBirth;
+            subjectfromRepo.titleId = subject.titleId;
+
+            _subjectOrderRepository.UpdateSubject(subjectfromRepo);
+            _subjectOrderRepository.Save();
+
+            return NoContent();
+        }
     }
 }

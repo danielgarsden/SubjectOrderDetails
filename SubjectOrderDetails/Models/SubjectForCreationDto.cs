@@ -11,10 +11,13 @@ namespace SubjectOrderDetails.Models
         [Required]
         public string firstName { get; set; }
 
+        [Required]
         public string lastName { get; set; }
 
+        [Required]
         public DateTimeOffset dateOfBirth { get; set; }
 
+        [Required]
         public int titleId { get; set; }
     }
 }
