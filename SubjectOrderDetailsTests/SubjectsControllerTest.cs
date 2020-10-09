@@ -228,10 +228,16 @@ namespace SubjectOrderDetailsTests
             };
 
             // act
-            var result = sc.UpdateSubject(1, subject);
+            var updateResult = sc.UpdateSubject(1, subject);
+            var getResult = sc.GetSubject(1).Result as OkObjectResult;
+            SubjectDto subjectReturned = getResult.Value as SubjectDto;
 
             // assert
-            Assert.IsInstanceOf<NoContentResult>(result);
+            Assert.IsInstanceOf<NoContentResult>(updateResult);
+            Assert.AreEqual("Mark", subjectReturned.firstName);
+            Assert.AreEqual("Garsden", subjectReturned.lastName);
+            Assert.AreEqual("11/02/1980", subject.dateOfBirth.ToString("d"));
+            Assert.AreEqual(1, subjectReturned.titleId);
 
         }
 
