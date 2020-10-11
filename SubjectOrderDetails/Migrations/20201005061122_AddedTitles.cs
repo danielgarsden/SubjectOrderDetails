@@ -2,6 +2,9 @@
 
 namespace SubjectOrderDetails.Migrations
 {
+
+#pragma warning disable CS1591
+
     public partial class AddedTitles : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -37,4 +40,7 @@ namespace SubjectOrderDetails.Migrations
                 name: "Titles");
         }
     }
+
+#pragma warning restore CS1591
+
 }

@@ -9,17 +9,28 @@ using System.Threading.Tasks;
 
 namespace SubjectOrderDetails.Controllers
 {
+    /// <summary>
+    /// Controller for the subject object
+    /// </summary>
     [ApiController]
     [Route("api/subjects")]
     public class SubjectsController : ControllerBase
     {
         private readonly ISubjectOrderRepository _subjectOrderRepository;
 
+        /// <summary>
+        /// Constructor for the subjectcontroller
+        /// </summary>
+        /// <param name="subjectOrderRepository"></param>
         public SubjectsController(ISubjectOrderRepository subjectOrderRepository)
         {
             _subjectOrderRepository = subjectOrderRepository ?? throw new Exception(nameof(subjectOrderRepository));
         }
 
+        /// <summary>
+        /// Get All Subjects
+        /// </summary>
+        /// <returns>Subject Dto objects, with SubjectID, First Name, Last Name, Data of Birth and TitleID</returns>
         [HttpGet()]
         public ActionResult<IEnumerable<SubjectDto>> GetSubjects()
         {
@@ -42,6 +53,11 @@ namespace SubjectOrderDetails.Controllers
             return Ok(subjectsToReturn);
         }
 
+        /// <summary>
+        /// Get one subject
+        /// </summary>
+        /// <param name="subjectId">The id of the subject to retrieve</param>
+        /// <returns>Subject Dto object, with SubjectID, First Name, Last Name, Data of Birth and TitleID</returns>
         [HttpGet("{subjectId}", Name ="GetSubject")]
         public ActionResult<SubjectDto> GetSubject(int subjectId)
         {
@@ -64,6 +80,11 @@ namespace SubjectOrderDetails.Controllers
             return Ok(subjectToReturn);
         }
 
+        /// <summary>
+        /// Create a new subject
+        /// </summary>
+        /// <param name="subject">A subject for creation DTO</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult CreateSubject([FromBody] SubjectForCreationDto subject)
         {
@@ -97,6 +118,11 @@ namespace SubjectOrderDetails.Controllers
                     subjectToReturn); ;
         }
 
+        /// <summary>
+        /// Deltete a subject
+        /// </summary>
+        /// <param name="subjectId">The subject to delete</param>
+        /// <returns></returns>
         [HttpDelete("{subjectId}")]
         public ActionResult DeleteSubject(int subjectId)
         {
@@ -114,6 +140,12 @@ namespace SubjectOrderDetails.Controllers
 
         }
 
+        /// <summary>
+        /// Update a subject
+        /// </summary>
+        /// <param name="subjectId">The ID of the subject to update</param>
+        /// <param name="subject">A Subject DTO containing the new details</param>
+        /// <returns></returns>
         [HttpPut("{subjectId}")]
         public ActionResult UpdateSubject(int subjectId, SubjectDto subject)
         {

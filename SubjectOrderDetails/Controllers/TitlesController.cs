@@ -9,17 +9,28 @@ using System.Threading.Tasks;
 
 namespace SubjectOrderDetails.Controllers
 {
+    /// <summary>
+    /// Controller for the titles object
+    /// </summary>
     [ApiController]
     [Route("api/titles")]
     public class TitlesController : ControllerBase
     {
         private readonly ISubjectOrderRepository _subjectOrderRepository;
 
+        /// <summary>
+        /// Constructor 
+        /// </summary>
+        /// <param name="subjectOrderRepository"></param>
         public TitlesController(ISubjectOrderRepository subjectOrderRepository)
         {
             _subjectOrderRepository = subjectOrderRepository ?? throw new Exception(nameof(subjectOrderRepository));
         }
 
+        /// <summary>
+        /// Get all tities
+        /// </summary>
+        /// <returns></returns>
         [HttpGet()]
         public ActionResult<IEnumerable<TitleDto>> GetTitles()
         {

@@ -12,6 +12,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SubjectOrderDetails
 {
+
+#pragma warning disable CS1591
+
     public class Program
     {
         public static void Main(string[] args)
@@ -47,4 +50,6 @@ namespace SubjectOrderDetails
                     webBuilder.UseStartup<Startup>();
                 });
     }
+
+#pragma warning restore CS1591
 }

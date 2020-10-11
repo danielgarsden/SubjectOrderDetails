@@ -1,0 +1,345 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SubjectOrderDetails</name>
+    </assembly>
+    <members>
+        <member name="T:SubjectOrderDetails.Controllers.SubjectsController">
+            <summary>
+            Controller for the subject object
+            </summary>
+        </member>
+        <member name="M:SubjectOrderDetails.Controllers.SubjectsController.#ctor(SubjectOrderDetails.Services.ISubjectOrderRepository)">
+            <summary>
+            Constructor for the subjectcontroller
+            </summary>
+            <param name="subjectOrderRepository"></param>
+        </member>
+        <member name="M:SubjectOrderDetails.Controllers.SubjectsController.GetSubjects">
+            <summary>
+            Get All Subjects
+            </summary>
+            <returns>Subject Dto objects, with SubjectID, First Name, Last Name, Data of Birth and TitleID</returns>
+        </member>
+        <member name="M:SubjectOrderDetails.Controllers.SubjectsController.GetSubject(System.Int32)">
+            <summary>
+            Get one subject
+            </summary>
+            <param name="subjectId">The id of the subject to retrieve</param>
+            <returns>Subject Dto object, with SubjectID, First Name, Last Name, Data of Birth and TitleID</returns>
+        </member>
+        <member name="M:SubjectOrderDetails.Controllers.SubjectsController.CreateSubject(SubjectOrderDetails.Models.SubjectForCreationDto)">
+            <summary>
+            Create a new subject
+            </summary>
+            <param name="subject">A subject for creation DTO</param>
+            <returns></returns>
+        </member>
+        <member name="M:SubjectOrderDetails.Controllers.SubjectsController.DeleteSubject(System.Int32)">
+            <summary>
+            Deltete a subject
+            </summary>
+            <param name="subjectId">The subject to delete</param>
+            <returns></returns>
+        </member>
+        <member name="M:SubjectOrderDetails.Controllers.SubjectsController.UpdateSubject(System.Int32,SubjectOrderDetails.Models.SubjectDto)">
+            <summary>
+            Update a subject
+            </summary>
+            <param name="subjectId">The ID of the subject to update</param>
+            <param name="subject">A Subject DTO containing the new details</param>
+            <returns></returns>
+        </member>
+        <member name="T:SubjectOrderDetails.Controllers.TitlesController">
+            <summary>
+            Controller for the titles object
+            </summary>
+        </member>
+        <member name="M:SubjectOrderDetails.Controllers.TitlesController.#ctor(SubjectOrderDetails.Services.ISubjectOrderRepository)">
+            <summary>
+            Constructor 
+            </summary>
+            <param name="subjectOrderRepository"></param>
+        </member>
+        <member name="M:SubjectOrderDetails.Controllers.TitlesController.GetTitles">
+            <summary>
+            Get all tities
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SubjectOrderDetails.DbContexts.SubjectOrderContext">
+            <summary>
+            Class to interact with the SubjectOrderDetails Database
+            </summary>
+        </member>
+        <member name="M:SubjectOrderDetails.DbContexts.SubjectOrderContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{SubjectOrderDetails.DbContexts.SubjectOrderContext})">
+            <summary>
+            Constructor that calls the base constructor
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="P:SubjectOrderDetails.DbContexts.SubjectOrderContext.Subjects">
+            <summary>
+            A DBset of subjects
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.DbContexts.SubjectOrderContext.Titles">
+            <summary>
+            A DbSet of titles
+            </summary>
+        </member>
+        <member name="M:SubjectOrderDetails.DbContexts.SubjectOrderContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Create some dummy data
+            </summary>
+            <param name="modelBuilder"></param>
+        </member>
+        <member name="T:SubjectOrderDetails.Entities.Subject">
+            <summary>
+            Subject Entity
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.Entities.Subject.subjectId">
+            <summary>
+            Subject ID
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.Entities.Subject.firstName">
+            <summary>
+            Subjects first name
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.Entities.Subject.lastName">
+            <summary>
+            Subjects last name
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.Entities.Subject.dateOfBirth">
+            <summary>
+            Subjects date of birth
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.Entities.Subject.Title">
+            <summary>
+            Title object of the this subject
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.Entities.Subject.titleId">
+            <summary>
+            Title ID of the subject
+            </summary>
+        </member>
+        <member name="T:SubjectOrderDetails.Entities.Title">
+            <summary>
+            A title object containing title Id and title name
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.Entities.Title.titleId">
+            <summary>
+            ID of the title
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.Entities.Title.titleName">
+            <summary>
+            The title name
+            </summary>
+        </member>
+        <member name="T:SubjectOrderDetails.Models.SubjectDto">
+            <summary>
+            A subject with SubjectID, first name, last name, date of birth and titleid
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.Models.SubjectDto.subjectId">
+            <summary>
+            The ID of the subject
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.Models.SubjectDto.firstName">
+            <summary>
+            The first name of the subject
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.Models.SubjectDto.lastName">
+            <summary>
+            The last name of the subject
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.Models.SubjectDto.dateOfBirth">
+            <summary>
+            The subjects date of birth
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.Models.SubjectDto.titleId">
+            <summary>
+            The title id of the subject
+            </summary>
+        </member>
+        <member name="T:SubjectOrderDetails.Models.SubjectForCreationDto">
+            <summary>
+            DTO to be used for creating subjects
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.Models.SubjectForCreationDto.firstName">
+            <summary>
+            Subject first name
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.Models.SubjectForCreationDto.lastName">
+            <summary>
+            Subjects last name
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.Models.SubjectForCreationDto.dateOfBirth">
+            <summary>
+             Subjects date of birth
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.Models.SubjectForCreationDto.titleId">
+            <summary>
+            Title ID for the subject
+            </summary>
+        </member>
+        <member name="T:SubjectOrderDetails.Models.TitleDto">
+            <summary>
+            Data transfer object for Title
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.Models.TitleDto.titleId">
+            <summary>
+            Id of the title
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.Models.TitleDto.titleName">
+            <summary>
+            Name of the title
+            </summary>
+        </member>
+        <member name="T:SubjectOrderDetails.Services.ISubjectOrderRepository">
+            <summary>
+            Interface for subjectorder repository
+            </summary>
+        </member>
+        <member name="M:SubjectOrderDetails.Services.ISubjectOrderRepository.GetSubjects">
+            <summary>
+            Get all subjects
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SubjectOrderDetails.Services.ISubjectOrderRepository.GetSubject(System.Int32)">
+            <summary>
+            Get one subject
+            </summary>
+            <param name="subjectId">The ID of the subjec to return</param>
+            <returns></returns>
+        </member>
+        <member name="M:SubjectOrderDetails.Services.ISubjectOrderRepository.AddSubject(SubjectOrderDetails.Entities.Subject)">
+            <summary>
+            Add a subject
+            </summary>
+            <param name="subject">The subject to add</param>
+        </member>
+        <member name="M:SubjectOrderDetails.Services.ISubjectOrderRepository.DeleteSubject(SubjectOrderDetails.Entities.Subject)">
+            <summary>
+            Delete a subject
+            </summary>
+            <param name="subject">The subject to delete</param>
+        </member>
+        <member name="M:SubjectOrderDetails.Services.ISubjectOrderRepository.UpdateSubject(SubjectOrderDetails.Entities.Subject)">
+            <summary>
+            Update a subject
+            </summary>
+            <param name="subject">The subject to update</param>
+        </member>
+        <member name="M:SubjectOrderDetails.Services.ISubjectOrderRepository.SubjectExists(System.Int32)">
+            <summary>
+            Check that a subject exists
+            </summary>
+            <param name="subjectId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SubjectOrderDetails.Services.ISubjectOrderRepository.GetTitles">
+            <summary>
+            Get all titles
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SubjectOrderDetails.Services.ISubjectOrderRepository.Save">
+            <summary>
+            Save the changes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SubjectOrderDetails.Services.SubjectOrderRepository">
+            <summary>
+            Repository for subject orders
+            </summary>
+        </member>
+        <member name="M:SubjectOrderDetails.Services.SubjectOrderRepository.#ctor(SubjectOrderDetails.DbContexts.SubjectOrderContext)">
+            <summary>
+            Constructor that receives the persistence context
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:SubjectOrderDetails.Services.SubjectOrderRepository.AddSubject(SubjectOrderDetails.Entities.Subject)">
+            <summary>
+            Add a subject
+            </summary>
+            <param name="subject">The subject to add</param>
+        </member>
+        <member name="M:SubjectOrderDetails.Services.SubjectOrderRepository.DeleteSubject(SubjectOrderDetails.Entities.Subject)">
+            <summary>
+            Delete a subject
+            </summary>
+            <param name="subject">The subject to delete</param>
+        </member>
+        <member name="M:SubjectOrderDetails.Services.SubjectOrderRepository.Dispose">
+            <summary>
+            Dispose object
+            </summary>
+        </member>
+        <member name="M:SubjectOrderDetails.Services.SubjectOrderRepository.GetSubject(System.Int32)">
+            <summary>
+            Get a subject
+            </summary>
+            <param name="subjectId">The ID of the subject to retrieve</param>
+            <returns></returns>
+        </member>
+        <member name="M:SubjectOrderDetails.Services.SubjectOrderRepository.GetSubjects">
+            <summary>
+            Get all subjects
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SubjectOrderDetails.Services.SubjectOrderRepository.Save">
+            <summary>
+            Save
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SubjectOrderDetails.Services.SubjectOrderRepository.SubjectExists(System.Int32)">
+            <summary>
+            Check if a subject exists
+            </summary>
+            <param name="subjectId">The subject to check</param>
+            <returns></returns>
+        </member>
+        <member name="M:SubjectOrderDetails.Services.SubjectOrderRepository.UpdateSubject(SubjectOrderDetails.Entities.Subject)">
+            <summary>
+            Update the subject
+            </summary>
+            <param name="subject">The subject ot update</param>
+        </member>
+        <member name="M:SubjectOrderDetails.Services.SubjectOrderRepository.GetTitles">
+            <summary>
+            Get all titles
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SubjectOrderDetails.Services.SubjectOrderRepository.Dispose(System.Boolean)">
+            <summary>
+            Dispose
+            </summary>
+            <param name="disposing"></param>
+        </member>
+    </members>
+</doc>

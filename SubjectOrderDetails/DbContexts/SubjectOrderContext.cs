@@ -7,17 +7,34 @@ using System.Threading.Tasks;
 
 namespace SubjectOrderDetails.DbContexts
 {
+    /// <summary>
+    /// Class to interact with the SubjectOrderDetails Database
+    /// </summary>
     public class SubjectOrderContext : DbContext
     {
+        /// <summary>
+        /// Constructor that calls the base constructor
+        /// </summary>
+        /// <param name="options"></param>
         public SubjectOrderContext(DbContextOptions<SubjectOrderContext> options) : base(options)
         {
 
         }
 
+        /// <summary>
+        /// A DBset of subjects
+        /// </summary>
         public DbSet<Subject> Subjects { get; set; }
 
+        /// <summary>
+        /// A DbSet of titles
+        /// </summary>
         public DbSet<Title> Titles { get; set; }
 
+        /// <summary>
+        /// Create some dummy data
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // seed the database with dummy data

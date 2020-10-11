@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SubjectOrderDetails</name>
+    </assembly>
+    <members>
+        <member name="M:SubjectOrderDetails.Controllers.SubjectsController.GetSubjects">
+            <summary>
+            Get All Subjects
+            </summary>
+            <returns>Subject Dto objects, with SubjectID, First Name, Last Name, Data of Birth and TitleID</returns>
+        </member>
+    </members>
+</doc>

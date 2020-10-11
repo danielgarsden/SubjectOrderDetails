@@ -9,11 +9,12 @@ namespace SubjectOrderDetailsTests
 {
     public class FakeSubjectOrderRepository : ISubjectOrderRepository
     {
-        private readonly List<Subject> _subject;
+        private readonly List<Subject> _subjects;
+        private readonly List<Title> _titles;
 
         public FakeSubjectOrderRepository()
         {
-            _subject = new List<Subject>()
+            _subjects = new List<Subject>()
             {
                 new Subject()
                 {
@@ -40,32 +41,61 @@ namespace SubjectOrderDetailsTests
                     titleId = 1
                 }
             };
+
+            _titles = new List<Title>()
+            {
+                new Title()
+                {
+                    titleId = 1,
+                    titleName = "Mr"
+                },
+                new Title()
+                {
+                    titleId = 2,
+                    titleName = "Mrs"
+                },
+                new Title()
+                {
+                    titleId = 3,
+                    titleName = "Master"
+                },
+                new Title()
+                {
+                    titleId = 4,
+                    titleName = "Miss"
+                },
+                new Title()
+                {
+                    titleId = 5,
+                    titleName = "Dr"
+                }
+            };
         }
 
         public void AddSubject(Subject subject)
         {
             subject.subjectId = 4;
-            _subject.Add(subject);
+            _subjects.Add(subject);
         }
 
         public void DeleteSubject(Subject subject)
         {
-            _subject.Remove(subject);
+            _subjects.Remove(subject);
         }
 
         public Subject GetSubject(int subjectId)
         {
-            return _subject.Where(s => s.subjectId == subjectId).FirstOrDefault();
+            return _subjects.Where(s => s.subjectId == subjectId).FirstOrDefault();
         }
 
         public IEnumerable<Subject> GetSubjects()
         {
-            return _subject;
+            return _subjects;
         }
 
         public IEnumerable<Title> GetTitles()
         {
-            throw new NotImplementedException();
+            return _titles;
         }
 
         public bool Save()

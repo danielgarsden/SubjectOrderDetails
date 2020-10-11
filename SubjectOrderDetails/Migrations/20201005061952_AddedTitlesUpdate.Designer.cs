@@ -9,6 +9,9 @@ using SubjectOrderDetails.DbContexts;
 
 namespace SubjectOrderDetails.Migrations
 {
+
+#pragma warning disable CS1591
+
     [DbContext(typeof(SubjectOrderContext))]
     [Migration("20201005061952_AddedTitlesUpdate")]
     partial class AddedTitlesUpdate
@@ -126,4 +129,6 @@ namespace SubjectOrderDetails.Migrations
 #pragma warning restore 612, 618
         }
     }
+
+#pragma warning restore CS1591
 }

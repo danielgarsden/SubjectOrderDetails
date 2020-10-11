@@ -7,13 +7,9 @@ using System.Collections.Generic;
 
 namespace SubjectOrderDetailsTests
 {
-    public class Tests
+    public class SubjectControllerTest
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
-
+   
         [Test]
         public void GetSubjects_ReturnsOkResult()
         {

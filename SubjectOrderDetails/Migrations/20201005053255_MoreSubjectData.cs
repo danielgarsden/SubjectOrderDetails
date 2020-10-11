@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SubjectOrderDetails.Migrations
 {
+#pragma warning disable CS1591
+
     public partial class MoreSubjectData : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -31,4 +33,6 @@ namespace SubjectOrderDetails.Migrations
                 keyValue: 3);
         }
     }
+
+#pragma warning restore CS1591
 }
