@@ -15,6 +15,7 @@ using SubjectOrderDetails.DbContexts;
 using Microsoft.EntityFrameworkCore.Migrations;
 using System.Reflection;
 using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace SubjectOrderDetails
 {
@@ -36,6 +37,9 @@ namespace SubjectOrderDetails
             services.AddControllers(setupAction =>
             {
                 setupAction.ReturnHttpNotAcceptable = true;
+                setupAction.Filters.Add(new ProducesResponseTypeAttribute(StatusCodes.Status400BadRequest));
+                setupAction.Filters.Add(new ProducesResponseTypeAttribute(StatusCodes.Status406NotAcceptable));
+                setupAction.Filters.Add(new ProducesResponseTypeAttribute(StatusCodes.Status500InternalServerError));
             })
             .AddXmlDataContractSerializerFormatters();
 

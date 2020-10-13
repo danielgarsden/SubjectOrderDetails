@@ -109,10 +109,10 @@ namespace SubjectOrderDetailsTests
 
             SubjectForCreationDto subject = new SubjectForCreationDto
             {
-                firstName = "Zita",
-                lastName = "Garsden Kabok",
-                dateOfBirth = new DateTime(1980, 05, 03),
-                titleId = 2
+                FirstName = "Zita",
+                LastName = "Garsden Kabok",
+                DateOfBirth = new DateTime(1980, 05, 03),
+                TitleId = 2
             };
 
             // act
@@ -131,10 +131,10 @@ namespace SubjectOrderDetailsTests
 
             SubjectForCreationDto subject = new SubjectForCreationDto
             {
-                firstName = "Zita",
-                lastName = "Garsden Kabok",
-                dateOfBirth = new DateTime(1980, 05, 03),
-                titleId = 2
+                FirstName = "Zita",
+                LastName = "Garsden Kabok",
+                DateOfBirth = new DateTime(1980, 05, 03),
+                TitleId = 2
             };
 
             // act
@@ -149,7 +149,7 @@ namespace SubjectOrderDetailsTests
             Assert.AreEqual(4, subjectReturned.subjectId);
             Assert.AreEqual("Zita", subjectReturned.firstName);
             Assert.AreEqual("Garsden Kabok", subjectReturned.lastName);
-            Assert.AreEqual("03/05/1980", subject.dateOfBirth.ToString("d"));
+            Assert.AreEqual("03/05/1980", subject.DateOfBirth.ToString("d"));
             Assert.AreEqual(2, subjectReturned.titleId);
 
         }
@@ -163,9 +163,9 @@ namespace SubjectOrderDetailsTests
 
             SubjectForCreationDto subject = new SubjectForCreationDto
             {
-                lastName = "Garsden Kabok",
-                dateOfBirth = new DateTime(1980, 05, 03),
-                titleId = 2
+                LastName = "Garsden Kabok",
+                DateOfBirth = new DateTime(1980, 05, 03),
+                TitleId = 2
             };
             sc.ModelState.AddModelError("firstName", "Required");
 

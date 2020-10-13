@@ -179,22 +179,22 @@
             DTO to be used for creating subjects
             </summary>
         </member>
-        <member name="P:SubjectOrderDetails.Models.SubjectForCreationDto.firstName">
+        <member name="P:SubjectOrderDetails.Models.SubjectForCreationDto.FirstName">
             <summary>
             Subject first name
             </summary>
         </member>
-        <member name="P:SubjectOrderDetails.Models.SubjectForCreationDto.lastName">
+        <member name="P:SubjectOrderDetails.Models.SubjectForCreationDto.LastName">
             <summary>
             Subjects last name
             </summary>
         </member>
-        <member name="P:SubjectOrderDetails.Models.SubjectForCreationDto.dateOfBirth">
+        <member name="P:SubjectOrderDetails.Models.SubjectForCreationDto.DateOfBirth">
             <summary>
              Subjects date of birth
             </summary>
         </member>
-        <member name="P:SubjectOrderDetails.Models.SubjectForCreationDto.titleId">
+        <member name="P:SubjectOrderDetails.Models.SubjectForCreationDto.TitleId">
             <summary>
             Title ID for the subject
             </summary>

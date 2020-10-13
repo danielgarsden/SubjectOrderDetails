@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using SubjectOrderDetails.Entities;
 using SubjectOrderDetails.Models;
 using SubjectOrderDetails.Services;
@@ -14,6 +15,7 @@ namespace SubjectOrderDetails.Controllers
     /// </summary>
     [ApiController]
     [Route("api/subjects")]
+    [Produces("application/json", "application/xml")]
     public class SubjectsController : ControllerBase
     {
         private readonly ISubjectOrderRepository _subjectOrderRepository;
@@ -31,6 +33,7 @@ namespace SubjectOrderDetails.Controllers
         /// Get All Subjects
         /// </summary>
         /// <returns>Subject Dto objects, with SubjectID, First Name, Last Name, Data of Birth and TitleID</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet()]
         public ActionResult<IEnumerable<SubjectDto>> GetSubjects()
         {
@@ -58,6 +61,8 @@ namespace SubjectOrderDetails.Controllers
         /// </summary>
         /// <param name="subjectId">The id of the subject to retrieve</param>
         /// <returns>Subject Dto object, with SubjectID, First Name, Last Name, Data of Birth and TitleID</returns>
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet("{subjectId}", Name ="GetSubject")]
         public ActionResult<SubjectDto> GetSubject(int subjectId)
         {
@@ -85,20 +90,22 @@ namespace SubjectOrderDetails.Controllers
         /// </summary>
         /// <param name="subject">A subject for creation DTO</param>
         /// <returns></returns>
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [Consumes("application/json")]
         [HttpPost]
         public ActionResult CreateSubject([FromBody] SubjectForCreationDto subject)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
 
             Subject subjectEntity = new Subject
             {
-                firstName = subject.firstName,
-                lastName = subject.lastName,
-                dateOfBirth = subject.dateOfBirth,
-                titleId = subject.titleId
+                firstName = subject.FirstName,
+                lastName = subject.LastName,
+                dateOfBirth = subject.DateOfBirth,
+                titleId = subject.TitleId
             };
 
             _subjectOrderRepository.AddSubject(subjectEntity);
@@ -114,7 +121,7 @@ namespace SubjectOrderDetails.Controllers
             };
 
             return CreatedAtRoute("GetSubject",
-                    new { subjectId = subjectToReturn.subjectId },
+                    new { subjectToReturn.subjectId },
                     subjectToReturn); ;
         }
 
@@ -123,6 +130,8 @@ namespace SubjectOrderDetails.Controllers
         /// </summary>
         /// <param name="subjectId">The subject to delete</param>
         /// <returns></returns>
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [HttpDelete("{subjectId}")]
         public ActionResult DeleteSubject(int subjectId)
         {
@@ -146,13 +155,16 @@ namespace SubjectOrderDetails.Controllers
         /// <param name="subjectId">The ID of the subject to update</param>
         /// <param name="subject">A Subject DTO containing the new details</param>
         /// <returns></returns>
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [Consumes("application/json")]
         [HttpPut("{subjectId}")]
         public ActionResult UpdateSubject(int subjectId, SubjectDto subject)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
 
             var subjectfromRepo = _subjectOrderRepository.GetSubject(subjectId);
 

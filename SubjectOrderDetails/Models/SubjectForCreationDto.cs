@@ -16,25 +16,25 @@ namespace SubjectOrderDetails.Models
         /// </summary>
         [Required]
         [MaxLength(100)]
-        public string firstName { get; set; }
+        public string FirstName { get; set; }
 
         /// <summary>
         /// Subjects last name
         /// </summary>
         [Required]
         [MaxLength(100)]
-        public string lastName { get; set; }
+        public string LastName { get; set; }
 
         /// <summary>
         ///  Subjects date of birth
         /// </summary>
         [Required]
-        public DateTimeOffset dateOfBirth { get; set; }
+        public DateTimeOffset DateOfBirth { get; set; }
 
         /// <summary>
         /// Title ID for the subject
         /// </summary>
         [Required]
-        public int titleId { get; set; }
+        public int TitleId { get; set; }
     }
 }

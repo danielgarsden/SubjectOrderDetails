@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using SubjectOrderDetails.Entities;
 using SubjectOrderDetails.Models;
 using SubjectOrderDetails.Services;
@@ -14,6 +15,9 @@ namespace SubjectOrderDetails.Controllers
     /// </summary>
     [ApiController]
     [Route("api/titles")]
+    [ProducesResponseType(StatusCodes.Status406NotAcceptable)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public class TitlesController : ControllerBase
     {
         private readonly ISubjectOrderRepository _subjectOrderRepository;
@@ -31,6 +35,7 @@ namespace SubjectOrderDetails.Controllers
         /// Get all tities
         /// </summary>
         /// <returns></returns>
+        [Produces("application/json", "application/xml")]
         [HttpGet()]
         public ActionResult<IEnumerable<TitleDto>> GetTitles()
         {
