@@ -144,6 +144,60 @@
             The title name
             </summary>
         </member>
+        <member name="T:SubjectOrderDetails.Helpers.PagedList`1">
+            <summary>
+            Class to represent a List with methods to allow paging
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:SubjectOrderDetails.Helpers.PagedList`1.CurrentPage">
+            <summary>
+            Represents the current page number within the data set
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.Helpers.PagedList`1.TotalPages">
+            <summary>
+            Represents the total number of pages within the data set
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.Helpers.PagedList`1.PageSize">
+            <summary>
+            Represents the size of each page within the data set
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.Helpers.PagedList`1.TotalCount">
+            <summary>
+            Represents the number of rows in the data set
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.Helpers.PagedList`1.HasPrevious">
+            <summary>
+            Is there a page before the current one
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.Helpers.PagedList`1.HasNext">
+            <summary>
+            Is there a page after the current one
+            </summary>
+        </member>
+        <member name="M:SubjectOrderDetails.Helpers.PagedList`1.#ctor(System.Collections.Generic.List{`0},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Constructor for the Paged List
+            </summary>
+            <param name="items"></param>
+            <param name="count"></param>
+            <param name="pageNumber"></param>
+            <param name="pageSize"></param>
+        </member>
+        <member name="M:SubjectOrderDetails.Helpers.PagedList`1.Create(System.Linq.IQueryable{`0},System.Int32,System.Int32)">
+            <summary>
+            A
+            </summary>
+            <param name="source"></param>
+            <param name="pageNumber"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
         <member name="T:SubjectOrderDetails.Models.SubjectDto">
             <summary>
             A subject with SubjectID, first name, last name, date of birth and titleid
