@@ -41,28 +41,44 @@ namespace SubjectOrderDetails.DbContexts
             modelBuilder.Entity<Subject>().HasData(
                 new Subject()
                 {
-                    subjectId = 1,
-                    firstName = "Daniel",
-                    lastName = "Garsden",
-                    dateOfBirth = new DateTime(1976, 8, 19),
-                    titleId = 1
+                    SubjectId = 1,
+                    FirstName = "Daniel",
+                    LastName = "Garsden",
+                    DateOfBirth = new DateTime(1976, 8, 19),
+                    TitleId = 1
                 },
                 new Subject()
                 {
-                    subjectId = 2,
-                    firstName = "Tamas",
-                    lastName = "Garsden",
-                    dateOfBirth = new DateTime(2015, 11, 29),
-                    titleId = 3
+                    SubjectId = 2,
+                    FirstName = "Tamas",
+                    LastName = "Garsden",
+                    DateOfBirth = new DateTime(2015, 11, 29),
+                    TitleId = 3
                 },
                 new Subject()
                 {
-                    subjectId = 3,
-                    firstName = "Alma",
-                    lastName = "Garsden",
-                    dateOfBirth = new DateTime(2017, 11, 16),
-                    titleId = 4
-                }
+                    SubjectId = 3,
+                    FirstName = "Alma",
+                    LastName = "Garsden",
+                    DateOfBirth = new DateTime(2017, 11, 16),
+                    TitleId = 4
+                },
+                new Subject()
+                {
+                    SubjectId = 4,
+                    FirstName = "Phillip",
+                    LastName = "Garsden",
+                    DateOfBirth = new DateTime(1949, 10, 05),
+                    TitleId = 4
+                },
+                 new Subject()
+                 {
+                     SubjectId = 5,
+                     FirstName = "Jennifer",
+                     LastName = "Garsden",
+                     DateOfBirth = new DateTime(1986, 07, 17),
+                     TitleId = 4
+                 }
                 );
 
             modelBuilder.Entity<Title>().HasData(

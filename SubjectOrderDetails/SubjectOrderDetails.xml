@@ -15,7 +15,7 @@
             </summary>
             <param name="subjectOrderRepository"></param>
         </member>
-        <member name="M:SubjectOrderDetails.Controllers.SubjectsController.GetSubjects">
+        <member name="M:SubjectOrderDetails.Controllers.SubjectsController.GetSubjects(SubjectOrderDetails.ResourceParameters.SubjectResourceParameters)">
             <summary>
             Get All Subjects
             </summary>
@@ -99,22 +99,22 @@
             Subject Entity
             </summary>
         </member>
-        <member name="P:SubjectOrderDetails.Entities.Subject.subjectId">
+        <member name="P:SubjectOrderDetails.Entities.Subject.SubjectId">
             <summary>
             Subject ID
             </summary>
         </member>
-        <member name="P:SubjectOrderDetails.Entities.Subject.firstName">
+        <member name="P:SubjectOrderDetails.Entities.Subject.FirstName">
             <summary>
             Subjects first name
             </summary>
         </member>
-        <member name="P:SubjectOrderDetails.Entities.Subject.lastName">
+        <member name="P:SubjectOrderDetails.Entities.Subject.LastName">
             <summary>
             Subjects last name
             </summary>
         </member>
-        <member name="P:SubjectOrderDetails.Entities.Subject.dateOfBirth">
+        <member name="P:SubjectOrderDetails.Entities.Subject.DateOfBirth">
             <summary>
             Subjects date of birth
             </summary>
@@ -124,7 +124,7 @@
             Title object of the this subject
             </summary>
         </member>
-        <member name="P:SubjectOrderDetails.Entities.Subject.titleId">
+        <member name="P:SubjectOrderDetails.Entities.Subject.TitleId">
             <summary>
             Title ID of the subject
             </summary>
@@ -214,6 +214,31 @@
             Name of the title
             </summary>
         </member>
+        <member name="T:SubjectOrderDetails.ResourceParameters.SubjectResourceParameters">
+            <summary>
+            Class to represent the parameters that can be used to seach for subjects
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.ResourceParameters.SubjectResourceParameters.FirstName">
+            <summary>
+            Subjects first name
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.ResourceParameters.SubjectResourceParameters.LastName">
+            <summary>
+            Subjects last name
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.ResourceParameters.SubjectResourceParameters.PageNumber">
+            <summary>
+            PageNumber to allow paging
+            </summary>
+        </member>
+        <member name="P:SubjectOrderDetails.ResourceParameters.SubjectResourceParameters.PageSize">
+            <summary>
+            PageSize to allow paging
+            </summary>
+        </member>
         <member name="T:SubjectOrderDetails.Services.ISubjectOrderRepository">
             <summary>
             Interface for subjectorder repository
@@ -223,6 +248,13 @@
             <summary>
             Get all subjects
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SubjectOrderDetails.Services.ISubjectOrderRepository.GetSubjects(SubjectOrderDetails.ResourceParameters.SubjectResourceParameters)">
+            <summary>
+            Get subjects with matching parameters
+            </summary>
+            <param name="subjectResourceParameters"></param>
             <returns></returns>
         </member>
         <member name="M:SubjectOrderDetails.Services.ISubjectOrderRepository.GetSubject(System.Int32)">
@@ -308,6 +340,13 @@
             <summary>
             Get all subjects
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SubjectOrderDetails.Services.SubjectOrderRepository.GetSubjects(SubjectOrderDetails.ResourceParameters.SubjectResourceParameters)">
+            <summary>
+            
+            </summary>
+            <param name="subjectResourceParameters"></param>
             <returns></returns>
         </member>
         <member name="M:SubjectOrderDetails.Services.SubjectOrderRepository.Save">

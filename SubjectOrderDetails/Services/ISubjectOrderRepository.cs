@@ -1,4 +1,6 @@
 ﻿using SubjectOrderDetails.Entities;
+using SubjectOrderDetails.Helpers;
+using SubjectOrderDetails.ResourceParameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +19,12 @@ namespace SubjectOrderDetails.Services
         /// </summary>
         /// <returns></returns>
         IEnumerable<Subject> GetSubjects();
+        /// <summary>
+        /// Get subjects with matching parameters
+        /// </summary>
+        /// <param name="subjectResourceParameters"></param>
+        /// <returns></returns>
+        PagedList<Subject> GetSubjects(SubjectResourceParameters subjectResourceParameters);
 
         /// <summary>
         /// Get one subject

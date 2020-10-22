@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SubjectOrderDetails.Entities;
 using SubjectOrderDetails.Models;
+using SubjectOrderDetails.ResourceParameters;
 using SubjectOrderDetails.Services;
 using System;
 using System.Collections.Generic;
@@ -35,9 +36,9 @@ namespace SubjectOrderDetails.Controllers
         /// <returns>Subject Dto objects, with SubjectID, First Name, Last Name, Data of Birth and TitleID</returns>
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet()]
-        public ActionResult<IEnumerable<SubjectDto>> GetSubjects()
+        public ActionResult<IEnumerable<SubjectDto>> GetSubjects([FromQuery] SubjectResourceParameters subjectResourceParameters)
         {
-            var subjectsFromRepo = _subjectOrderRepository.GetSubjects();
+            var subjectsFromRepo = _subjectOrderRepository.GetSubjects(subjectResourceParameters);
 
             List<SubjectDto> subjectsToReturn = new List<SubjectDto>();
 
@@ -45,11 +46,11 @@ namespace SubjectOrderDetails.Controllers
             {
                 subjectsToReturn.Add(new SubjectDto
                 {
-                    subjectId = subject.subjectId,
-                    firstName = subject.firstName,
-                    lastName = subject.lastName,
-                    dateOfBirth = subject.dateOfBirth,
-                    titleId = subject.titleId
+                    subjectId = subject.SubjectId,
+                    firstName = subject.FirstName,
+                    lastName = subject.LastName,
+                    dateOfBirth = subject.DateOfBirth,
+                    titleId = subject.TitleId
                 });
             }
 
@@ -75,11 +76,11 @@ namespace SubjectOrderDetails.Controllers
 
             SubjectDto subjectToReturn = new SubjectDto
             {
-                subjectId = subjectfromRepo.subjectId,
-                firstName = subjectfromRepo.firstName,
-                lastName = subjectfromRepo.lastName,
-                dateOfBirth = subjectfromRepo.dateOfBirth,
-                titleId = subjectfromRepo.titleId
+                subjectId = subjectfromRepo.SubjectId,
+                firstName = subjectfromRepo.FirstName,
+                lastName = subjectfromRepo.LastName,
+                dateOfBirth = subjectfromRepo.DateOfBirth,
+                titleId = subjectfromRepo.TitleId
             };
 
             return Ok(subjectToReturn);
@@ -91,21 +92,22 @@ namespace SubjectOrderDetails.Controllers
         /// <param name="subject">A subject for creation DTO</param>
         /// <returns></returns>
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Consumes("application/json")]
         [HttpPost]
         public ActionResult CreateSubject([FromBody] SubjectForCreationDto subject)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return BadRequest(ModelState);
-            //}
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
             Subject subjectEntity = new Subject
             {
-                firstName = subject.FirstName,
-                lastName = subject.LastName,
-                dateOfBirth = subject.DateOfBirth,
-                titleId = subject.TitleId
+                FirstName = subject.FirstName,
+                LastName = subject.LastName,
+                DateOfBirth = subject.DateOfBirth,
+                TitleId = subject.TitleId
             };
 
             _subjectOrderRepository.AddSubject(subjectEntity);
@@ -113,11 +115,11 @@ namespace SubjectOrderDetails.Controllers
 
             var subjectToReturn = new SubjectDto
             {
-                subjectId = subjectEntity.subjectId,
-                firstName = subjectEntity.firstName,
-                lastName = subjectEntity.lastName,
-                dateOfBirth = subjectEntity.dateOfBirth,
-                titleId = subjectEntity.titleId
+                subjectId = subjectEntity.SubjectId,
+                firstName = subjectEntity.FirstName,
+                lastName = subjectEntity.LastName,
+                dateOfBirth = subjectEntity.DateOfBirth,
+                titleId = subjectEntity.TitleId
             };
 
             return CreatedAtRoute("GetSubject",
@@ -157,14 +159,15 @@ namespace SubjectOrderDetails.Controllers
         /// <returns></returns>
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Consumes("application/json")]
         [HttpPut("{subjectId}")]
         public ActionResult UpdateSubject(int subjectId, SubjectDto subject)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return BadRequest(ModelState);
-            //}
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
             var subjectfromRepo = _subjectOrderRepository.GetSubject(subjectId);
 
@@ -173,10 +176,10 @@ namespace SubjectOrderDetails.Controllers
                 return NotFound();
             }
 
-            subjectfromRepo.firstName = subject.firstName;
-            subjectfromRepo.lastName = subject.lastName;
-            subjectfromRepo.dateOfBirth = subject.dateOfBirth;
-            subjectfromRepo.titleId = subject.titleId;
+            subjectfromRepo.FirstName = subject.firstName;
+            subjectfromRepo.LastName = subject.lastName;
+            subjectfromRepo.DateOfBirth = subject.dateOfBirth;
+            subjectfromRepo.TitleId = subject.titleId;
 
             _subjectOrderRepository.UpdateSubject(subjectfromRepo);
             _subjectOrderRepository.Save();

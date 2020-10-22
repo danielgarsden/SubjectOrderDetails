@@ -18,39 +18,39 @@ namespace SubjectOrderDetails.Entities
         /// Subject ID
         /// </summary>
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int subjectId { get; set; }
+        public int SubjectId { get; set; }
 
         /// <summary>
         /// Subjects first name
         /// </summary>
         [Required]
         [MaxLength(100)]
-        public string firstName { get; set; }
+        public string FirstName { get; set; }
 
         /// <summary>
         /// Subjects last name
         /// </summary>
         [Required]
         [MaxLength(100)]
-        public string lastName { get; set; }
+        public string LastName { get; set; }
 
         /// <summary>
         /// Subjects date of birth
         /// </summary>
         [Required]
-        public DateTimeOffset dateOfBirth { get; set; }
+        public DateTimeOffset DateOfBirth { get; set; }
 
         /// <summary>
         /// Title object of the this subject
         /// </summary>
-        [ForeignKey("titleId")]
+        [ForeignKey("TitleId")]
         public Title Title { get; set; }
 
 
         /// <summary>
         /// Title ID of the subject
         /// </summary>
-        public int titleId { get; set; }
+        public int TitleId { get; set; }
 
     }
 }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using SubjectOrderDetails.Entities;
 using SubjectOrderDetails.Services;
+using SubjectOrderDetails.ResourceParameters;
+using SubjectOrderDetails.Helpers;
 
 namespace SubjectOrderDetailsTests
 {
@@ -18,28 +20,44 @@ namespace SubjectOrderDetailsTests
             {
                 new Subject()
                 {
-                    subjectId = 1,
-                    firstName = "Daniel",
-                    lastName = "Garsden",
-                    dateOfBirth = new DateTime(1976, 8, 19),
-                    titleId = 1
+                    SubjectId = 1,
+                    FirstName = "Daniel",
+                    LastName = "Garsden",
+                    DateOfBirth = new DateTime(1976, 8, 19),
+                    TitleId = 1
                 },
                 new Subject()
                 {
-                    subjectId = 1,
-                    firstName = "Tamas",
-                    lastName = "Garsden",
-                    dateOfBirth = new DateTime(2015, 11, 29),
-                    titleId = 1
+                    SubjectId = 2,
+                    FirstName = "Tamas",
+                    LastName = "Garsden",
+                    DateOfBirth = new DateTime(2015, 11, 29),
+                    TitleId = 1
                 },
                 new Subject()
                 {
-                    subjectId = 1,
-                    firstName = "Alma",
-                    lastName = "Garsden",
-                    dateOfBirth = new DateTime(2017, 11, 16),
-                    titleId = 1
-                }
+                    SubjectId = 3,
+                    FirstName = "Alma",
+                    LastName = "Garsden",
+                    DateOfBirth = new DateTime(2017, 11, 16),
+                    TitleId = 1
+                },
+                 new Subject()
+                {
+                    SubjectId = 4,
+                    FirstName = "Phillip",
+                    LastName = "Garsden",
+                    DateOfBirth = new DateTime(1949, 10, 05),
+                    TitleId = 4
+                },
+                 new Subject()
+                 {
+                     SubjectId = 5,
+                     FirstName = "Jennifer",
+                     LastName = "Garsden",
+                     DateOfBirth = new DateTime(1986, 07, 17),
+                     TitleId = 4
+                 }
             };
 
             _titles = new List<Title>()
@@ -74,7 +92,7 @@ namespace SubjectOrderDetailsTests
 
         public void AddSubject(Subject subject)
         {
-            subject.subjectId = 4;
+            subject.SubjectId = 6;
             _subjects.Add(subject);
         }
 
@@ -85,12 +103,18 @@ namespace SubjectOrderDetailsTests
 
         public Subject GetSubject(int subjectId)
         {
-            return _subjects.Where(s => s.subjectId == subjectId).FirstOrDefault();
+            return _subjects.Where(s => s.SubjectId == subjectId).FirstOrDefault();
         }
 
         public IEnumerable<Subject> GetSubjects()
         {
             return _subjects;
+        }
+
+        public PagedList<Subject> GetSubjects(SubjectResourceParameters subjectResourceParameters)
+        {
+            //return _subjects;
+            throw new NotImplementedException();
         }
 
         public IEnumerable<Title> GetTitles()

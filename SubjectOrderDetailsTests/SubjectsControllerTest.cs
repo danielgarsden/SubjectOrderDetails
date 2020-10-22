@@ -18,7 +18,7 @@ namespace SubjectOrderDetailsTests
             SubjectsController sc = new SubjectsController(fake);
 
             // act
-            var result = sc.GetSubjects();
+            var result = sc.GetSubjects(null);
 
             // assert
             Assert.IsInstanceOf<OkObjectResult>(result.Result);
@@ -32,7 +32,7 @@ namespace SubjectOrderDetailsTests
             SubjectsController sc = new SubjectsController(fake);
 
             // act
-            var result = sc.GetSubjects().Result as OkObjectResult;
+            var result = sc.GetSubjects(null).Result as OkObjectResult;
 
             // Assert
             Assert.IsInstanceOf<List<SubjectDto>>(result.Value);
@@ -47,11 +47,11 @@ namespace SubjectOrderDetailsTests
             SubjectsController sc = new SubjectsController(fake);
 
             // act
-            var result = sc.GetSubjects().Result as OkObjectResult;
+            var result = sc.GetSubjects(null).Result as OkObjectResult;
             List<SubjectDto> subjects =  result.Value as List<SubjectDto>;
 
             // assert
-            Assert.AreEqual(3, subjects.Count);
+            Assert.AreEqual(5, subjects.Count);
         }
 
         [Test]
@@ -76,7 +76,7 @@ namespace SubjectOrderDetailsTests
             SubjectsController sc = new SubjectsController(fake);
 
             // act
-            var result = sc.GetSubject(4);
+            var result = sc.GetSubject(6);
 
             // assert
             Assert.IsInstanceOf<NotFoundResult>(result.Result);
@@ -146,7 +146,7 @@ namespace SubjectOrderDetailsTests
 
             SubjectDto subjectReturned = result.Value as SubjectDto;
 
-            Assert.AreEqual(4, subjectReturned.subjectId);
+            Assert.AreEqual(6, subjectReturned.subjectId);
             Assert.AreEqual("Zita", subjectReturned.firstName);
             Assert.AreEqual("Garsden Kabok", subjectReturned.lastName);
             Assert.AreEqual("03/05/1980", subject.DateOfBirth.ToString("d"));
@@ -185,12 +185,12 @@ namespace SubjectOrderDetailsTests
 
             // act
             var deleteResult = sc.DeleteSubject(1);
-            var getresult = sc.GetSubjects().Result as OkObjectResult;
+            var getresult = sc.GetSubjects(null).Result as OkObjectResult;
             List<SubjectDto> subjects = getresult.Value as List<SubjectDto>;
 
             // assert
             Assert.IsInstanceOf<NoContentResult>(deleteResult);
-            Assert.AreEqual(2, subjects.Count);
+            Assert.AreEqual(4, subjects.Count);
         }
 
         [Test]
@@ -201,7 +201,7 @@ namespace SubjectOrderDetailsTests
             SubjectsController sc = new SubjectsController(fake);
 
             // act
-            var deleteResult = sc.DeleteSubject(4);
+            var deleteResult = sc.DeleteSubject(6);
 
             // assert
             Assert.IsInstanceOf<NotFoundResult>(deleteResult);
@@ -253,7 +253,7 @@ namespace SubjectOrderDetailsTests
             };
 
             // act
-            var result = sc.UpdateSubject(4, subject);
+            var result = sc.UpdateSubject(6, subject);
 
             // assert
             Assert.IsInstanceOf<NotFoundResult>(result);

@@ -1,5 +1,7 @@
 ﻿using SubjectOrderDetails.DbContexts;
 using SubjectOrderDetails.Entities;
+using SubjectOrderDetails.Helpers;
+using SubjectOrderDetails.ResourceParameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,7 +70,7 @@ namespace SubjectOrderDetails.Services
         /// <returns></returns>
         public Subject GetSubject(int subjectId)
         {
-            return _context.Subjects.FirstOrDefault(s => s.subjectId == subjectId);
+            return _context.Subjects.FirstOrDefault(s => s.SubjectId == subjectId);
         }
 
         /// <summary>
@@ -78,6 +80,42 @@ namespace SubjectOrderDetails.Services
         public IEnumerable<Subject> GetSubjects()
         {
             return _context.Subjects.ToList<Subject>();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="subjectResourceParameters"></param>
+        /// <returns></returns>
+        public PagedList<Subject> GetSubjects(SubjectResourceParameters subjectResourceParameters)
+        {
+            if (subjectResourceParameters == null)
+            {
+                throw new ArgumentNullException(nameof(subjectResourceParameters));
+            }
+
+            //if (string.IsNullOrWhiteSpace(subjectResourceParameters.FirstName) && string.IsNullOrWhiteSpace(subjectResourceParameters.LastName))
+            //{
+            //    return GetSubjects();
+            //}
+
+            var collection = _context.Subjects as IQueryable<Subject>;
+
+            if (!string.IsNullOrWhiteSpace(subjectResourceParameters.FirstName))
+            {
+                var firstName = subjectResourceParameters.FirstName.Trim();
+                collection = collection.Where(a => a.FirstName == firstName);
+            }
+
+            if (!string.IsNullOrWhiteSpace(subjectResourceParameters.LastName))
+            {
+                var lastName = subjectResourceParameters.LastName.Trim();
+                collection = collection.Where(a => a.LastName == lastName);
+            }
+
+
+
+            return PagedList<Subject>.Create(collection, subjectResourceParameters.PageNumber, subjectResourceParameters.PageSize);
         }
 
         /// <summary>
@@ -96,7 +134,7 @@ namespace SubjectOrderDetails.Services
         /// <returns></returns>
         public bool SubjectExists(int subjectId)
         {
-            return _context.Subjects.Any(s => s.subjectId == subjectId);
+            return _context.Subjects.Any(s => s.SubjectId == subjectId);
         }
 
         /// <summary>
